@@ -1,0 +1,35 @@
+<ul class="nav nav-tabs">
+  <li class="nav-item">
+    <a class="nav-link active" aria-current="page" href="#" 
+    style="color: red; font-size:20px ; "><b>B-log</b></a>
+  </li>
+  <li class="nav-item">
+    <a class="nav-link" href="/">Home</a>
+  </li>
+  <% if (locals.user) { %>
+    <li class="nav-item">
+      <a class="nav-link " aria-disabled="true" href="/blog/add-new">Add Blog</a>
+    </li>
+      
+  <li class="nav-item dropdown">
+    <a class="nav-link dropdown-toggle" data-bs-toggle="dropdown" href="#" role="button" aria-expanded="false">More</a>
+    <ul class="dropdown-menu">
+      <li><a class="dropdown-item" href="/user/logout">Logout</a></li>
+    </ul>
+  </li>
+</ul>
+  <% }  else{%>
+    <li class="nav-item">
+      <a class="nav-link" href="/user/signin">Signin</a>
+    </li>
+    <li class="nav-item">
+      <a class="nav-link" href="/user/signup">Create Account</a>
+    </li>
+    <% } %>
+
+
+<% if (locals.error) { %>
+  <div class="alert alert-danger" role="alert">
+    <%= locals.error %>
+  </div>
+<% } %>

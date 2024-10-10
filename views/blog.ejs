@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <%- include("./partials/head") %>  
+  <title>Blog Page</title>
+</head>
+<body>
+  <%- include("./partials/nav") %>
+   <div class="container ">
+    <h1><%= blog.title %></h1>
+    <img src="<%= blog.coverImageURL %>"  width="300px" height="300px" />
+    <h5 class="mt-2"><b>Description:</b></h5>
+    <pre class="mt-4"><%= blog.body %></pre>
+   </div>
+
+   <div class="container mt-4">
+    <img src="<%= blog.CreatedBy.profileImageURL %>" width="50px"/>
+    <%= blog.CreatedBy.fullname %>
+   </div>
+
+   <% if (locals.user) { %>
+    <div class="container">
+     <h1>Comments (<%= comments.length %>)</h1>
+     <form action="/blog/comment/<%= blog._id %>" method="post">
+       <div class="mb-2">
+         <input type="text" class="form-control " id="content" placeholder="Post a Comment" name="content">
+       </div>
+       <div class="mb-3 mt-2">
+         <button class="btn btn-primary" type="submit">Post</button>
+       </div>
+     </form>
+    </div>
+ 
+    <div class="container mt-3">
+      <% comments.forEach(comment => { %>
+         <img src="<%= comment.CreatedBy.profileImageURL %>" width="40px" />
+         <%= comment.CreatedBy.fullname %>
+         <pre><%= comment.content %></pre>
+      <% }) %>
+
+    </div>
+
+
+
+
+
+
+   <% } %>
+
+   
+
+
+
+  
+  <%- include("./partials/scripts") %>
+</body>
+</html>
